@@ -19,11 +19,8 @@ class Biome: Config(Mod("Biome", ModType.HUD, "/assets/evergreenhud/evergreenhud
     class BiomeHud: SingleTextHud("Biome", true, 400, 50) {
         override fun getText(example: Boolean): String {
             val player = mc.thePlayer ?: return "Unknown"
-
-            val playerPos = BlockPos(player.posX, player.posY, player.posZ)
-            val playerChunk = mc.theWorld.getChunkFromBlockCoords(playerPos)
-
-            return playerChunk.getBiome(playerPos, mc.theWorld.worldChunkManager).biomeName
+            
+            return mc.theWorld.getBiomeGenFromCoords(player.getPosition()).biomeName
         }
 
     }
